@@ -7,7 +7,6 @@ class card:
     __face = Face
     #note that the isMeld attribute is marked by the deck
     __isMeld = False
-    __face_to_value = {}
     
     #basic get methods for access to attributes
     def getSuit(self):
@@ -17,7 +16,10 @@ class card:
         return self.__face
 
     def getScore(self):
-        return self.__face_to_value[self.__face]
+        if(self.__face.value<=10):
+            return self.__face.value
+        else:
+            return 10
 
     def isMeld(self):
         return self.__isMeld
@@ -29,9 +31,3 @@ class card:
         #setup using the provided face and suit
         self.__suit = suit
         self.__face = face
-
-        for possible_face in Face:
-            if(possible_face.value<=10):
-                self.__face_to_value[possible_face] = possible_face.value
-            else:
-                self.__face_to_value[possible_face] = 10
